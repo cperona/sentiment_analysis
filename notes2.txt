@@ -1,0 +1,8 @@
+sentiment analysis
+
+
+class CustomLSTM():
+
+tokens = tokenizer.tokenize("hola") --> tokens ['h', 'ola', ...]
+ids = tokenizer.convert_tokens_to_ids(tokens) --> [1231, 1231, 1231, 1231]
+decoded_strigns = tokenizer.decode(ids) --> hola

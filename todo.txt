@@ -1,0 +1,5 @@
+tokenizer
+_________
+convertir caracters en ints (ascii)
+parelles de caracters que mes es repeteixen --> crear un token en forma de int ascii (numero més elevat mes 1, p ex: 256)
+repetir el mateix
