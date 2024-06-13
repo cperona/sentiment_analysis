@@ -10,7 +10,7 @@ BATCH_SIZE = 100
 tokenizer = AutoTokenizer.from_pretrained("projecte-aina/FLOR-6.3B")
 
 #test
-tokens =tokenizer.tokenize("hola que tal")
+tokens = tokenizer.tokenize("hola que tal")
 print(tokens)
 
 class Dataset(Dataset):
@@ -19,12 +19,15 @@ class Dataset(Dataset):
         self.x = df["review"].values
         self.y = df["sentiment"].values
         self.tokenizer = tokenizer
+        y_encoded = pd.get_dummies(self.y)
+        self.y_encoded_tensor = torch.tensor(y_encoded.values, dtype=torch.int32)
     def __len__(self):
         return len(self.y)
     def __getitem__(self, idx):
         sentence = self.x[idx]
         tokens = self.tokenizer.tokenize(sentence)
-        logits = nn.functional.one_hot(self.y[idx], 2)
+        print(len(tokens))
+        logits = self.y_encoded_tensor[idx]
         return tokens, logits
 
 training_data = Dataset(csv="IMDB Dataset.csv", tokenizer=tokenizer)
